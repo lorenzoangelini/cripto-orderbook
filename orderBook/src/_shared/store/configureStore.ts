@@ -2,6 +2,7 @@ import { EffectMiddleware } from "@redux-saga/core";
 import { batch } from "react-redux"
 import { applyMiddleware, combineReducers, createStore, Store } from "redux";
 import createSagaMiddleware from "redux-saga";
+import { socketMiddleWare } from "../../orderBook";
 import reducers from "./reducers";
 import { rootSaga } from "./rootSagas";
 
@@ -21,7 +22,8 @@ export default function configureStore(): {store: Store } {
     })
 
     const middlewares = [
-        sagaMiddleware
+        sagaMiddleware,
+        socketMiddleWare
     ]
 
     const store = createStore(

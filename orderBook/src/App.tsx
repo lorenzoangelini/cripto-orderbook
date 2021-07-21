@@ -16,6 +16,7 @@
  } from 'react-native';
 import bootstrap from './_shared/configuration/bootstrap';
 import OrderBookScreen from './orderBook/screens/OrderBookScreen';
+import { Provider } from 'react-redux';
 
 
 
@@ -26,11 +27,13 @@ import OrderBookScreen from './orderBook/screens/OrderBookScreen';
   
 
    return (
+     <Provider store={store}>
      <SafeAreaView>
        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
        <OrderBookScreen></OrderBookScreen>
        
      </SafeAreaView>
+     </Provider>
    );
  };
 

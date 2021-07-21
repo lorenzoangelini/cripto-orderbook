@@ -1,45 +1,24 @@
 import React from "react";
 import { Pressable, View, Text, ScrollView } from "react-native";
+import { Button, TableHeader, TableRow } from "../../_shared/components";
 import { useOrderBook } from "../hooks";
-
+import { appStyle } from "../../_shared/styles"
 const OrderBookScreen: React.FC = () => {
 
-    const {stopWebSocket, startWebSocket, asks, bids} = useOrderBook();
-   
-    return <ScrollView>
-    <Pressable onPress={stopWebSocket}>
-        <View style={{height:100, backgroundColor: 'blue', width:100}}>
-    </View></Pressable>
-    <Pressable onPress={startWebSocket}>
-    <View style={{height:100, backgroundColor: 'red', width:100}}>
-</View></Pressable>
+    const { stopWebSocket, startWebSocket, asks, bids, toggleSubscribeSocket } = useOrderBook();
 
-{asks?.map((item) => {
+    return <><ScrollView style={appStyle.height100}>
+        <TableHeader items={['PRICE', 'SIZE', 'TOTAL']} />
+        <TableRow textColors={'green'} items={bids} />
+        <View style={appStyle.separator} />
+        <TableRow textColors={'red'} items={asks} />
+    </ScrollView>
 
-return <View style={{flexDirection: 'row'}}>
-    <Text>{item.price}</Text>
-    <Text>----------</Text>
-    <Text>{item.size}</Text>
-    <Text>----------</Text>
-    <Text>{item.total}</Text>
-    </View>
-})
-}
-
-{bids?.map((item) => {
-
-return <View style={{flexDirection: 'row'}}>
-    <Text style={{color:"red"}}>{item.price}</Text>
-    <Text style={{color:"red"}}>----------</Text>
-    <Text style={{color:"red"}}>{item.size}</Text>
-    <Text style={{color:"red"}}>----------</Text>
-    <Text style={{color:"red"}}>{item.total}</Text>
-    </View>
-})
-}
-
-
-</ScrollView>
+        <View style={[appStyle.headerRow, appStyle.bottomBarContainer]}>
+            <Button color={appStyle.backgroundPurple} onPress={toggleSubscribeSocket} text={"Toggle Feed"} />
+            <Button color={appStyle.backgroundRed} onPress={stopWebSocket} text={"Kill Feed"} />
+        </View>
+    </>
 }
 
 export default OrderBookScreen;

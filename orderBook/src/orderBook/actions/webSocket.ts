@@ -9,6 +9,10 @@ export const closeWebSocket= createAction(
     'orderBook/CLOSE_WEB_SOCKET',
 )();
 
+export const setStatusWebSocket= createAction(
+    'orderBook/SET_WEB_SOCKET',
+)<"subscribed" | "info" | "none" | undefined>();
+
 export const handleWebSocketResponse= createAction(
     'orderBook/HANDLE_WEB_SOCKET',
 )<ResponseWebSocket>();
@@ -16,3 +20,11 @@ export const handleWebSocketResponse= createAction(
 export const successOrdersResponse= createAction(
     'orderBook/SUCCESS_ORDERS',
 )<ActionOrders>();
+
+export const unSubscribe= createAction(
+    'orderBook/UNSUBSCRIBE_WEB_SOCKET',
+)<"PI_XBTUSD"|"PI_ETHUSD">();
+
+export const subscribe = createAction(
+    'orderBook/SUBSCRIBE_WEB_SOCKET',
+)<"PI_XBTUSD"|"PI_ETHUSD">();

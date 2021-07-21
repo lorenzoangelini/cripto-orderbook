@@ -30,9 +30,10 @@ import { Provider } from 'react-redux';
      <Provider store={store}>
      <SafeAreaView>
        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+       </SafeAreaView>
        <OrderBookScreen></OrderBookScreen>
        
-     </SafeAreaView>
+     
      </Provider>
    );
  };

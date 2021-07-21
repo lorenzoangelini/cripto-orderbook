@@ -18,3 +18,14 @@ export const getAsks = createSelector(
     selectState,
     slice => slice.orders?.data?.asks
 );
+
+export const getWebSocketStatus = createSelector(
+    selectState,
+    slice => slice.orders?.data?.statusWebSocket
+);
+
+export const getProductsId = createSelector(
+    selectState,
+    slice => slice.orders?.data?.productId
+);
+

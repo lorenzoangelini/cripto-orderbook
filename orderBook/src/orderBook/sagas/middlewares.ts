@@ -1,10 +1,11 @@
 import { Middleware } from "redux";
 import { getType } from "typesafe-actions";
 import { WEB_SOCKET_URL } from '../paths'
-import { initWebSocket, closeWebSocket, handleWebSocketResponse, setStatusWebSocket, unSubscribe, subscribe } from '../actions'
+import { initWebSocket, closeWebSocket, handleWebSocketResponse, setStatusWebSocket, unSubscribe, subscribe, setError } from '../actions'
 import { ResponseWebSocket } from "../types";
 
 import _ from "lodash";
+import { getProductsId } from "../selectors";
 
 let ws: WebSocket;
 const messageBuilder = (productId: string, event: string) => {
@@ -18,12 +19,10 @@ const messageBuilder = (productId: string, event: string) => {
 export const socketMiddleWare: Middleware<any> = store => next => action => {
 
   if (action.type === getType(initWebSocket)) {
-
     ws = new WebSocket(WEB_SOCKET_URL);
-
     ws.onopen = () => {
-      console.error("Aperta")
-      ws.send(JSON.stringify(messageBuilder('PI_XBTUSD', 'subscribe')));
+      const productId = getProductsId(store.getState())
+      ws.send(JSON.stringify(messageBuilder(productId, 'subscribe')));
     };
     ws.onmessage = (event: WebSocketMessageEvent) => {
       const response: ResponseWebSocket = JSON.parse(event.data);
@@ -34,14 +33,14 @@ export const socketMiddleWare: Middleware<any> = store => next => action => {
       }
     };
     ws.onclose = () => {
-      console.error("Chiusa")
+      store.dispatch(setError("Feed Killed"))
+     
     };
     ws.onerror = (event) => {
-      console.error("Errore")
+      store.dispatch(setError("Error during processing feed"))
     }
   }
   if (action.type === getType(closeWebSocket)) {
-    console.error("Chiuso")
     ws.close();
   }
 

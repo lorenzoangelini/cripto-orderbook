@@ -1,6 +1,6 @@
 import { put } from '@redux-saga/core/effects';
 import { SagaIterator } from '@redux-saga/types';
-import { select, debounce } from 'redux-saga/effects';
+import { select, debounce, takeLatest, takeEvery, takeLeading } from 'redux-saga/effects';
 import * as actions from '../actions'
 import {getAsks, getBids} from '../selectors'
 import { Level } from '../types';
@@ -25,13 +25,12 @@ function* handleWebSocketRequestSaga(
      yield put(actions.successOrdersResponse({asks: asksLevels, bids: bidsLevels}))
 
     }catch(e){
-      console.error(e)
-        
+      yield put(actions.setError("Error retrieve asks and bids"))
     }
 }
 
 export function* handleWebSocketSaga() {
-    yield debounce(10,actions.handleWebSocketResponse, handleWebSocketRequestSaga);
+    yield debounce(1,actions.handleWebSocketResponse, handleWebSocketRequestSaga);
 }
 
 

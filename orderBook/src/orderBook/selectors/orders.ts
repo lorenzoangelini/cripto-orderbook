@@ -14,6 +14,11 @@ export const getBids = createSelector(
     slice => slice.orders?.data?.bids
 );
 
+export const getErros = createSelector(
+    selectState,
+    slice => slice.orders?.data?.error
+);
+
 export const getAsks = createSelector(
     selectState,
     slice => slice.orders?.data?.asks

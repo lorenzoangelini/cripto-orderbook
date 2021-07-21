@@ -28,3 +28,7 @@ export const unSubscribe= createAction(
 export const subscribe = createAction(
     'orderBook/SUBSCRIBE_WEB_SOCKET',
 )<"PI_XBTUSD"|"PI_ETHUSD">();
+
+export const setError = createAction(
+    'orderBook/SET_ERROR_WEB_SOCKET',
+)<string|undefined>();

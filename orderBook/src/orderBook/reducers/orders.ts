@@ -6,14 +6,15 @@ export type State = {
     asks: Level[] ,
     bids: Level[] ,
     statusWebSocket?: 'subscribed' | 'info' | 'none' | 'unsubscribed'
-    productId: 'PI_XBTUSD' | 'PI_ETHUSD'
+    productId: 'PI_XBTUSD' | 'PI_ETHUSD',
+    error?: string
 }
 const initialState: State = {
     isLoading: false,
     asks: [],
     bids: [],
     statusWebSocket: 'none',
-    productId: 'PI_XBTUSD'
+    productId: 'PI_XBTUSD',
 }
 
 type Types = ActionType<typeof actions>;
@@ -36,6 +37,12 @@ const reducer = createReducer<State, Types>(initialState).handleAction(
     (state, actions) => ({
         ...state,
         productId: actions.payload
+    }),
+).handleAction(
+    actions.setError,
+    (state, actions) => ({
+        ...state,
+        error: actions.payload
     }),
 )
 export default reducer;

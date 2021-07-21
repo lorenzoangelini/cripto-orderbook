@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {initWebSocket, closeWebSocket, unSubscribe,successOrdersResponse, subscribe,} from '../actions';
 import {getAsks, getBids, getWebSocketStatus, getProductsId} from '../selectors';
@@ -10,6 +10,7 @@ export function useOrderBook(){
   const bids = useSelector(getBids);
   const status = useSelector(getWebSocketStatus);
   const productId =  useSelector(getProductsId);
+  const [isAlive, setIsAlive] = useState<boolean>(true);
 
 
   const dispatch = useDispatch();
@@ -19,8 +20,16 @@ export function useOrderBook(){
   },[])
 
   const stopWebSocket = useCallback(() => {
-   dispatch(closeWebSocket())
-  },[])
+
+    if(isAlive){
+      dispatch(closeWebSocket())
+      setIsAlive(false)
+    }else{
+      setIsAlive(true)
+      dispatch(initWebSocket())
+     
+    }
+  },[isAlive])
 
   const subScribeSocket = useCallback(() => {
     dispatch(subscribe(productId === ProductId.PI_XBTUSD ? ProductId.PI_ETHUSD : ProductId.PI_XBTUSD ))
@@ -45,6 +54,7 @@ export function useOrderBook(){
       startWebSocket,
       asks,
       bids,
-      toggleSubscribeSocket
+      toggleSubscribeSocket,
+      isAlive
     }
 }

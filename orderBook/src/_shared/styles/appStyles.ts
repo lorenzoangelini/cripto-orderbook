@@ -30,6 +30,9 @@ export const appStyle = StyleSheet.create({
     backgroundPurple: {
         backgroundColor: 'purple'
     },
+    backgroundGreen: {
+        backgroundColor: 'green'
+    },
     bottomBarContainer: {
         position: 'absolute', bottom: 0, left: 0, right: 0, flex: 1, backgroundColor: '#242D3C', height: "12%", justifyContent: 'center', alignItems: 'center'
     },
@@ -37,7 +40,7 @@ export const appStyle = StyleSheet.create({
         height: 50, minWidth: '25%', borderRadius: 10, marginLeft: 10, marginRight: 10, alignItems: 'center', justifyContent: 'center'
     },
     height100: {
-         height: "100%" 
+        height: "100%"
     },
     h1: {
         color: 'black',
@@ -49,7 +52,7 @@ export const appStyle = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold'
     },
-    h2:{
+    h2: {
         color: 'black',
         fontSize: 16,
         fontWeight: 'bold'
@@ -61,7 +64,12 @@ export const appStyle = StyleSheet.create({
     },
     padding10: {
         padding: 10
-    }
+    },
+    errorBannerContainer: {
+        position: 'absolute', borderRadius: 20, top: 0, left: 20,
+        right: 20, flex: 1, backgroundColor: 'red', height: "8%", justifyContent: 'center',
+        alignItems: 'center'
+    },
 
 
 })

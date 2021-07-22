@@ -6,13 +6,13 @@ import { appStyle } from "../../_shared/styles"
 import { NotificationBanner } from "../../_shared/components/NotificationBanner";
 const OrderBookScreen: React.FC = () => {
 
-    const { stopWebSocket, startWebSocket, asks, bids, toggleSubscribeSocket, isAlive } = useOrderBook();
+    const { stopWebSocket, toggleSubscribeSocket, isAlive } = useOrderBook();
 
-    return <><ScrollView style={appStyle.height100}>
+    return <><ScrollView style={[appStyle.height100, appStyle.backgroundBlack]}>
         <TableHeader items={['PRICE', 'SIZE', 'TOTAL']} />
-        <TableRow textColors={'green'} items={bids} />
+        <TableRow textColors={'green'}  />
         <View style={appStyle.separator} />
-        <TableRow textColors={'red'} items={asks} />
+        <TableRow textColors={'red'} />
     </ScrollView>
 
         <View style={[appStyle.headerRow, appStyle.bottomBarContainer]}>

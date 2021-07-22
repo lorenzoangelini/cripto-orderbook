@@ -17,9 +17,14 @@ export const handleWebSocketResponse= createAction(
     'orderBook/HANDLE_WEB_SOCKET',
 )<ResponseWebSocket>();
 
+
 export const successOrdersResponse= createAction(
     'orderBook/SUCCESS_ORDERS',
 )<ActionOrders>();
+
+export const resetOrdersBook= createAction(
+    'orderBook/RESET_ORDERS_BOOK',
+)();
 
 export const unSubscribe= createAction(
     'orderBook/UNSUBSCRIBE_WEB_SOCKET',

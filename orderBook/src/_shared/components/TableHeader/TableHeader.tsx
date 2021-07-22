@@ -14,7 +14,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({ items = [] }): JSX.Ele
 
         {items?.map((value) => {
             return <View key={'key' + value} style={appStyle.headerRow}>
-                <View style={appStyle.flex1}><Text style={appStyle.textCenter}>{value}</Text></View>
+                <View style={appStyle.flex1}><Text style={[appStyle.h1White,appStyle.textCenter]}>{value}</Text></View>
             </View>
         })
         }

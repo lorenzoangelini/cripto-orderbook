@@ -17,6 +17,7 @@
 import bootstrap from './_shared/configuration/bootstrap';
 import OrderBookScreen from './orderBook/screens/OrderBookScreen';
 import { Provider } from 'react-redux';
+import { appStyle } from './_shared/styles';
 
 
 
@@ -28,10 +29,10 @@ import { Provider } from 'react-redux';
 
    return (
      <Provider store={store}>
-     <SafeAreaView>
+     <SafeAreaView style={appStyle.backgroundBlack}>
        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
        </SafeAreaView>
-       <OrderBookScreen></OrderBookScreen>
+       <OrderBookScreen/>
        
      
      </Provider>

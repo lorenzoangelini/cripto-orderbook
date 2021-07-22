@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const appStyle = StyleSheet.create({
 
+
     flex1: {
         flex: 1
     },
@@ -9,7 +10,7 @@ export const appStyle = StyleSheet.create({
         textAlign: 'center'
     },
     headerContainer: {
-        flexDirection: 'row', backgroundColor: 'gray', paddingTop: 15, paddingBottom: 15,
+        flexDirection: 'row', backgroundColor: '#242D3C', paddingTop: 15, paddingBottom: 15,
         justifyContent: "space-around"
     },
     headerRow: {
@@ -32,6 +33,9 @@ export const appStyle = StyleSheet.create({
     },
     backgroundGreen: {
         backgroundColor: 'green'
+    },
+    backgroundBlack: {
+        backgroundColor: 'black'
     },
     bottomBarContainer: {
         position: 'absolute', bottom: 0, left: 0, right: 0, flex: 1, backgroundColor: '#242D3C', height: "12%", justifyContent: 'center', alignItems: 'center'
@@ -62,11 +66,21 @@ export const appStyle = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold'
     },
+    p1: {
+        color: 'black',
+        fontSize: 12,
+        fontWeight: 'bold'
+    },
+    p1White: {
+        color: 'white',
+        fontSize: 12,
+        fontWeight: 'bold'
+    },
     padding10: {
         padding: 10
     },
     errorBannerContainer: {
-        position: 'absolute', borderRadius: 20, top: 0, left: 20,
+        position: 'absolute', borderRadius: 20, top: "5%", left: 20,
         right: 20, flex: 1, backgroundColor: 'red', height: "8%", justifyContent: 'center',
         alignItems: 'center'
     },

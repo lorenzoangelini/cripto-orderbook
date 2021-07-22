@@ -1,32 +1,32 @@
 import React from "react"
 import { View, Text, FlatList } from "react-native"
-import { Level } from "../../../orderBook"
+import { useSelector } from "react-redux"
+import { getCurrentBidsRow, getCurrentRowAsks, Level } from "../../../orderBook"
 import { appStyle } from "../../styles"
+import { PriceItem } from "../PriceItem/PriceItem"
+import { SizeItem } from "../SizeItem"
+import { TableText } from "../TableText"
+import { TotalItem } from "../TotalItem"
 
 
 type TableRowProps = {
-    level: Level
+    index: number
     textColors: string;
 }
 
 
-export const TableItem: React.FC<TableRowProps> = ({
-    level,
+const TableCell: React.FC<TableRowProps> = ({
+    index,
     textColors = 'red' }): JSX.Element => {
-
     return <View style={appStyle.spaceBetween}>
-        
      <View style={appStyle.cellContainer}>
-        <View style={appStyle.flex1}><Text style={[appStyle.textCenter, { color: textColors }]}>{level?.price?.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '1,')}</Text></View>
-        <View style={appStyle.flex1}><Text style={appStyle.textCenter}>{level?.size?.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '1,')}</Text></View>
-        <View style={appStyle.flex1}><Text style={appStyle.textCenter}>{level?.total?.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '1,')}</Text></View>
+     <PriceItem isAsk={textColors == 'red'} textColors={textColors} index={index}/>
+     <SizeItem isAsk={textColors == 'red'}  index={index}/>
+     <TotalItem isAsk={textColors == 'red'}  index={index}/>
     </View>
- 
-
     </View>
-
-
-
 }
 
-TableItem.displayName = 'TableItem'
+TableCell.displayName = 'TableItem'
+
+export const TableItem = React.memo(TableCell);

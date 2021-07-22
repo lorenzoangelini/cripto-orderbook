@@ -25,7 +25,7 @@ export const TableRowMemo: React.FC<TableRowProps> = ({
         })*/}
         {<FlatList
         scrollEnabled={false}
-        data={[0,1,2,3,4,5,7,8,9]}
+        data={[0,1,2,3,4,5,7,8,9,10,11]}
         renderItem={({item, index})=> <TableItem textColors={textColors} index={index}/>}
         keyExtractor={(item) => "key"+item}
       />}

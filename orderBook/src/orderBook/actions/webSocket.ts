@@ -11,7 +11,7 @@ export const closeWebSocket= createAction(
 
 export const setStatusWebSocket= createAction(
     'orderBook/SET_WEB_SOCKET',
-)<"subscribed" | "info" | "none" | undefined>();
+)<"subscribed" | "info" | "none" |"unsubscribed"| undefined>();
 
 export const handleWebSocketResponse= createAction(
     'orderBook/HANDLE_WEB_SOCKET',

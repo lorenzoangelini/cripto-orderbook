@@ -35,7 +35,6 @@ export function useOrderBook(){
   const toggleSubscribeSocket = useCallback(() => {
     dispatch(unSubscribe(productId))
     subScribeSocket()
-    dispatch(resetOrdersBook())
    },[productId])
 
   const startWebSocket = useCallback(() => {

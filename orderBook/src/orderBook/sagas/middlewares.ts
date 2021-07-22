@@ -1,7 +1,7 @@
 import { Middleware } from "redux";
 import { getType } from "typesafe-actions";
 import { WEB_SOCKET_URL } from '../paths'
-import { initWebSocket, closeWebSocket, handleWebSocketResponse, setStatusWebSocket, unSubscribe, subscribe, setError } from '../actions'
+import { initWebSocket, closeWebSocket, handleWebSocketResponse, setStatusWebSocket, unSubscribe, subscribe, setError, resetOrdersBook } from '../actions'
 import { ResponseWebSocket } from "../types";
 
 import _ from "lodash";
@@ -28,6 +28,9 @@ export const socketMiddleWare: Middleware<any> = store => next => action => {
       const response: ResponseWebSocket = JSON.parse(event.data);
       if (response.event) {
         store.dispatch(setStatusWebSocket(response.event))
+        if(response.event === "unsubscribed"){
+          store.dispatch(resetOrdersBook())
+        }
       } else {
         store.dispatch(handleWebSocketResponse(response))
       }

@@ -5,7 +5,7 @@ export type ResponseWebSocket = {
     feed: string;
     product_id: "PI_XBTUSD" | "PI_ETHUSD",
     numLevels: number;
-    event?: 'subscribed' | 'info'
+    event?: 'subscribed' | 'info' | 'unsubscribed'
 
 }
 
